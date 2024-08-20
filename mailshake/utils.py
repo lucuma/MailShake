@@ -45,7 +45,7 @@ def encode_address(addr, charset):
     non-ascii characters.
     """
     if not isinstance(addr, tuple):
-        addr = parseaddr(to_str(addr))
+        addr = parseaddr(force_str(addr))
     name, addr = addr
     if isinstance(charset, str):
         charset = Charset(charset)
@@ -122,7 +122,7 @@ def forbid_multi_line_headers(name, val):
         )
 
 
-def to_str(s, encoding="utf-8", errors="strict"):
+def force_str(s, encoding="utf-8", errors="strict"):
     """Force a string to be the native text_type"""
     if isinstance(s, str):
         return s
