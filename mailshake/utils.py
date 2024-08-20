@@ -28,13 +28,9 @@ class CachedDnsName:
 DNS_NAME = CachedDnsName()
 
 
-def split_addr(addr, encoding):
-    warnings.warn(
-        "the split_addr function is deprecated, you can use a simple "
-        "`.rsplit('@', 1)` instead",
-        DeprecationWarning,
-    )
-    return encode_address(addr, encoding).rsplit("@", 1)
+def punycode(domain):
+    """Return the Punycode of the given domain if it's non-ASCII."""
+    return domain.encode("idna").decode("ascii")
 
 
 def encode_address(addr, charset):
